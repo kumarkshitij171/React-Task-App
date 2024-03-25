@@ -42,10 +42,12 @@ export const AllTasks = createSlice({
                 task.priority = priority
             }
         },
-
+        changeInitalState: (state, action) => {
+            state.tasks = action.payload
+        }
     }
 })
 
-export const { addTask, removeTask, changeStatus } = AllTasks.actions
+export const { addTask, removeTask, changeStatus,changeInitalState,filterByStatus } = AllTasks.actions
 
 export default AllTasks.reducer

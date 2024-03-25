@@ -1,14 +1,55 @@
 import { FaUser } from "react-icons/fa";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Card from "./components/Card";
 import ModalComponent from "./components/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { changeInitalState } from "./features/task/taskSlice";
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
-
   const [assigneeFilter, setAsigneeFilter] = useState("")
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const AllTask = useSelector(state => state.tasks)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (priorityFilter.length === 0) {
+      dispatch(changeInitalState(AllTask));
+      return;
+    }
+    const filterTask = AllTask
+      .filter((task) =>
+        task
+          .priority
+          .toLowerCase()
+          .includes(priorityFilter
+            .toLowerCase()
+          )
+      )
+    dispatch(changeInitalState(filterTask))
+  }, [priorityFilter])
+
+
+
+  useEffect(() => {
+    if (assigneeFilter.length == 0) {
+      dispatch(changeInitalState(AllTask));
+      return;
+    }
+    const filterTask = AllTask
+      .filter((task) =>
+        task
+          .asignee
+          .toLowerCase()
+          .includes(assigneeFilter
+            .toLowerCase()
+          )
+      )
+    dispatch(changeInitalState(filterTask))
+
+  }, [assigneeFilter])
 
   return (
     <>
@@ -37,6 +78,10 @@ function App() {
             id="combo-box-demo"
             options={PriorityList}
             size="small"
+            inputValue={priorityFilter}
+            onInputChange={(event, newInputValue) => {
+              setPriorityFilter(newInputValue);
+            }}
             sx={{ width: 200 }}
             renderInput={(params) => <TextField {...params} label="Priority" />}
           />

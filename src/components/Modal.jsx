@@ -255,8 +255,8 @@ export default function ModalComponent({ openModal, setOpenModal, Type, id, myte
                                                 <MenuItem value={"Pending"}>Pending</MenuItem>
                                                 <MenuItem value={"Inprogress"}>Inprogress</MenuItem>
                                                 <MenuItem value={"Progress"}>Progress</MenuItem>
-                                                <MenuItem value={"deployed"}>Deployed</MenuItem>
-                                                <MenuItem value={"differed"}>Differed</MenuItem>
+                                                <MenuItem value={"Deployed"}>Deployed</MenuItem>
+                                                <MenuItem value={"Differed"}>Differed</MenuItem>
                                             </Select>
                                         </FormControl>
                                     </Box>
