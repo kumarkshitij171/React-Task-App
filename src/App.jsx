@@ -5,18 +5,19 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Card from "./components/Card";
 import ModalComponent from "./components/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { changeInitalState } from "./features/task/taskSlice";
+import { changeInitalState, resetTask } from "./features/task/taskSlice";
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
   const [assigneeFilter, setAsigneeFilter] = useState("")
-  const [priorityFilter, setPriorityFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('')
+  const [sortFilter, setSortFilter] = useState('')
   const AllTask = useSelector(state => state.tasks)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (priorityFilter.length === 0) {
-      dispatch(changeInitalState(AllTask));
+      dispatch(resetTask());
       return;
     }
     const filterTask = AllTask
@@ -32,10 +33,9 @@ function App() {
   }, [priorityFilter])
 
 
-
   useEffect(() => {
     if (assigneeFilter.length == 0) {
-      dispatch(changeInitalState(AllTask));
+      dispatch(resetTask());
       return;
     }
     const filterTask = AllTask
@@ -50,6 +50,28 @@ function App() {
     dispatch(changeInitalState(filterTask))
 
   }, [assigneeFilter])
+
+  useEffect(() => {
+    if (sortFilter.length == 0) {
+      dispatch(resetTask());
+      return;
+    }
+    const filterTask = [...AllTask]
+      .sort((a, b) => {
+        if (sortFilter === "Priority") {
+          const priorityA = parseInt(a.priority.slice(1));
+          const priorityB = parseInt(b.priority.slice(1));
+          return priorityB - priorityA;
+        }
+        if (sortFilter === "Asignee") {
+          return a.asignee.localeCompare(b.asignee)
+        }
+        if (sortFilter === "Team") {
+          return a.team.localeCompare(b.team)
+        }
+      })
+    dispatch(changeInitalState(filterTask))
+  }, [sortFilter])
 
   return (
     <>
@@ -87,7 +109,7 @@ function App() {
           />
           <input
             type="date"
-            placeholder="Search"
+            placeholder="dd-mm-yyyy"
             className="border border-gray-300 rounded-md p-1 m-2" />
 
           <button
@@ -109,6 +131,10 @@ function App() {
             options={SortList}
             size="small"
             sx={{ width: 200 }}
+            inputValue={sortFilter}
+            onInputChange={(event, newInputValue) => {
+              setSortFilter(newInputValue);
+            }}
             renderInput={(params) => <TextField {...params} label="Priority" />}
           />
 
@@ -141,7 +167,5 @@ const SortList = [
   { label: "Asignee" },
   { label: "Team" },
 ]
-
-
 
 export default App

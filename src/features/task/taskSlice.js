@@ -11,7 +11,18 @@ const initialState = {
             priority: "P0",
             status: "Progress"
         },
-
+    ],
+    // copy of original state
+    copyTask: [
+        {
+            id: 1,
+            title: "Hello world",
+            description: "This is a description",
+            team: "Team1",
+            asignee: "User1",
+            priority: "P0",
+            status: "Progress"
+        },
     ]
 }
 
@@ -30,9 +41,13 @@ export const AllTasks = createSlice({
                 status: action.payload.status
             }
             state.tasks.push(task)
+            state.copyTask.push(task)
         },
         removeTask: (state, action) => {
             state.tasks = state.tasks.filter((task) => task.id !== action.payload)
+            state.copyTask = state.copyTask.filter((task) => task.id !== action.payload)
+
+            state.copyTask = state.tasks
         },
         changeStatus: (state, action) => {
             const { id, status, priority } = action.payload
@@ -41,13 +56,18 @@ export const AllTasks = createSlice({
                 task.status = status
                 task.priority = priority
             }
+
+            state.copyTask = state.tasks
         },
-        changeInitalState: (state, action) => {
+        changeInitalState: (state,action) => {
             state.tasks = action.payload
+        },
+        resetTask: (state)=>{
+            state.tasks = state.copyTask
         }
     }
 })
 
-export const { addTask, removeTask, changeStatus,changeInitalState,filterByStatus } = AllTasks.actions
+export const { addTask, removeTask, changeStatus, changeInitalState,resetTask } = AllTasks.actions
 
 export default AllTasks.reducer

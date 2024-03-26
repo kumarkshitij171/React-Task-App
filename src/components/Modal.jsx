@@ -116,25 +116,25 @@ export default function ModalComponent({ openModal, setOpenModal, Type, id, myte
                     {modalType === 'Edit' &&
                         <div>
                             <label className='block mt-2'>Title: </label>
-                            <div className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-80' type="text" >
+                            <div className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-[16rem] md:w-80' type="text" >
                                 {mytitle}
                             </div>
                             <label className='block mt-2'>Description: </label>
-                            <div className="bg-gray-400 p-2 rounded-md border-black placeholder-gray-700">
+                            <div className="bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-[16rem] md:w-80">
                                 {mydescription}
                             </div>
                             <label className='block mt-2'>Team: </label>
-                            <div className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-80' type="text" >
+                            <div className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-[16rem] md:w-80' type="text" >
                                 {myteam}
                             </div>
                             <label className='block mt-2'>Assignee: </label>
-                            <div className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-80' type="text" >
+                            <div className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-[16rem] md:w-80' type="text" >
                                 @ {myasignee}
                             </div>
 
-                            <div className="flex gap-3">
+                            <div className="flex gap-3 flex-wrap">
                                 <div className="flex gap-2 mt-3 items-center">
-                                    priority:
+                                    Priority:
                                     <Box sx={{ minWidth: 120 }}>
                                         <FormControl fullWidth>
                                             <InputLabel id="demo-simple-select-label">Priority: </InputLabel>
@@ -155,7 +155,7 @@ export default function ModalComponent({ openModal, setOpenModal, Type, id, myte
                                     </Box>
                                 </div>
                                 <div className="flex gap-2 mt-3 items-center">
-                                    status:
+                                    Status:
                                     <Box sx={{ minWidth: 120 }}>
                                         <FormControl fullWidth>
                                             <InputLabel id="demo-simple-select-label">status: </InputLabel>
@@ -187,7 +187,7 @@ export default function ModalComponent({ openModal, setOpenModal, Type, id, myte
                             <input
                                 value={title}
                                 onChange={(e) => { setTitle(e.target.value) }}
-                                className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-80'
+                                className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-[16rem] md:w-80'
                                 type="text"
                                 placeholder='Title' />
 
@@ -197,14 +197,14 @@ export default function ModalComponent({ openModal, setOpenModal, Type, id, myte
                                 rows={5}
                                 value={description}
                                 onChange={(e) => { setDescription(e.target.value) }}
-                                className="bg-gray-400 p-2 rounded-md border-black placeholder-gray-700"
+                                className="bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-[16rem] md:w-80"
                                 placeholder='Description' />
 
                             <label className='block mt-2'>Team: </label>
                             <input
                                 value={team}
                                 onChange={(e) => { setTeam(e.target.value) }}
-                                className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-80'
+                                className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-[16rem] md:w-80'
                                 placeholder='Team Name'
                                 type="text" />
 
@@ -212,13 +212,13 @@ export default function ModalComponent({ openModal, setOpenModal, Type, id, myte
                             <input
                                 value={asignee}
                                 onChange={(e) => { setAsignee(e.target.value) }}
-                                className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-80'
+                                className='bg-gray-400 p-2 rounded-md border-black placeholder-gray-700 w-[16rem] md:w-80'
                                 placeholder='@Assignee_Name'
                                 type="text" />
 
-                            <div className="flex gap-3">
-                                <div className="flex gap-2 mt-3 items-center">
-                                    priority:
+                            <div className="flex gap-3 flex-wrap">
+                                <div className="flex gap-2 mt-3 items-center ">
+                                    Priority:
                                     <Box sx={{ minWidth: 120 }}>
                                         <FormControl fullWidth>
                                             <InputLabel id="demo-simple-select-label">Priority: </InputLabel>
@@ -239,7 +239,7 @@ export default function ModalComponent({ openModal, setOpenModal, Type, id, myte
                                     </Box>
                                 </div>
                                 <div className="flex gap-2 mt-3 items-center">
-                                    status:
+                                    Status:
                                     <Box sx={{ minWidth: 120 }}>
                                         <FormControl fullWidth>
                                             <InputLabel id="demo-simple-select-label">status: </InputLabel>
