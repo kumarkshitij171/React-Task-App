@@ -34,9 +34,8 @@ const Task = ({ id, title, description, team, asignee, priority, status }) => {
                 <p>@{asignee}</p>
                 <button
                     ref={dropdownRef}
-                    className='relative ml-auto bg-blue-500 cursor-pointer py-1 px-3 rounded-sm text-white'><CiMenuKebab
-                        onClick={() => setIsOpen(!isOpen)}
-                    />
+                    onClick={() => setIsOpen(!isOpen)}
+                    className='relative ml-auto bg-blue-500 cursor-pointer py-1 px-3 rounded-sm text-white'><CiMenuKebab/>
                     {isOpen && (
                         <div className="origin-top-right absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
                             <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
