@@ -2,8 +2,6 @@ import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = {
     tasks: [],
-    // copy of original state
-    copyTask: []
 }
 
 export const AllTasks = createSlice({
@@ -21,15 +19,11 @@ export const AllTasks = createSlice({
                 status: action.payload.status
             }
             state.tasks.push(task)
-            state.copyTask.push(task)
-            localStorage.setItem('tasks', JSON.stringify(state.copyTask))
+            localStorage.setItem('tasks', JSON.stringify(state.tasks))
         },
         removeTask: (state, action) => {
             state.tasks = state.tasks.filter((task) => task.id !== action.payload)
-            state.copyTask = state.copyTask.filter((task) => task.id !== action.payload)
-
-            state.copyTask = state.tasks
-            localStorage.setItem('tasks', JSON.stringify(state.copyTask))
+            localStorage.setItem('tasks', JSON.stringify(state.tasks))
         },
         changeStatus: (state, action) => {
             const { id, status, priority } = action.payload
@@ -38,19 +32,18 @@ export const AllTasks = createSlice({
                 task.status = status
                 task.priority = priority
             }
-
-            state.copyTask = state.tasks
-            localStorage.setItem('tasks', JSON.stringify(state.copyTask))
+            localStorage.setItem('tasks', JSON.stringify(state.tasks))
         },
         setFromLocalStorage: (state, action) => {
             state.tasks = action.payload
-            state.copyTask = action.payload
         },
         changeInitalState: (state, action) => {
             state.tasks = action.payload
         },
         resetTask: (state) => {
-            state.tasks = state.copyTask
+            if(localStorage.getItem('tasks')!=undefined){
+                state.tasks = JSON.parse(localStorage.getItem('tasks'))
+            }
         }
     }
 })
