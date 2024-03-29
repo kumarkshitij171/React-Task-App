@@ -1,8 +1,45 @@
-# React + Vite
+## Installation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Make sure you have Node.js and npm installed on your machine.
+2. Clone this repository to your local machine:
 
-Currently, two official plugins are available:
+   ```bash
+   git clone https://github.com/kumarkshitij171/React-Task-App.git
+   ```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. Navigate to the project directory:
+
+   ```bash
+   cd React-Task-App
+   ```
+
+4. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Getting Started
+
+To start the development server, run the following command:
+
+```bash
+npm run dev
+```
+
+This will start the development server and open the app in your default browser. You can start making changes to the code, and the browser will hot-reload to reflect your changes instantly.
+
+## Building for Production
+
+To build the app for production, run:
+
+```bash
+npm run build
+```
+
+This will generate a production-ready build of your app in the `dist` directory. You can then deploy this build to a hosting service of your choice.
+
+## Folder Structure
+
+- `src`: Contains the source code of the React app.
+- `public`: Contains public assets like HTML files, images, etc.
