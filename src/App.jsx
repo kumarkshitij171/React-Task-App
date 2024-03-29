@@ -5,7 +5,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Card from "./components/Card";
 import ModalComponent from "./components/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { changeInitalState, resetTask } from "./features/task/taskSlice";
+import { changeInitalState, resetTask,setFromLocalStorage } from "./features/task/taskSlice";
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
@@ -13,6 +13,7 @@ function App() {
   const [priorityFilter, setPriorityFilter] = useState('')
   const [sortFilter, setSortFilter] = useState('')
   const AllTask = useSelector(state => state.tasks)
+  const CopyTask = useSelector(state => state.copyTask)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -32,6 +33,13 @@ function App() {
     dispatch(changeInitalState(filterTask))
   }, [priorityFilter])
 
+  useEffect(()=>{
+    console.log(localStorage.getItem('tasks'));
+    if(localStorage.getItem('tasks')){
+      const data = JSON.parse(localStorage.getItem('tasks'));
+      dispatch(setFromLocalStorage(data))
+    }
+  },[])
 
   useEffect(() => {
     if (assigneeFilter.length == 0) {

@@ -42,12 +42,14 @@ export const AllTasks = createSlice({
             }
             state.tasks.push(task)
             state.copyTask.push(task)
+            localStorage.setItem('tasks', JSON.stringify(state.copyTask))
         },
         removeTask: (state, action) => {
             state.tasks = state.tasks.filter((task) => task.id !== action.payload)
             state.copyTask = state.copyTask.filter((task) => task.id !== action.payload)
 
             state.copyTask = state.tasks
+            localStorage.setItem('tasks', JSON.stringify(state.copyTask))
         },
         changeStatus: (state, action) => {
             const { id, status, priority } = action.payload
@@ -58,16 +60,21 @@ export const AllTasks = createSlice({
             }
 
             state.copyTask = state.tasks
+            localStorage.setItem('tasks', JSON.stringify(state.copyTask))
         },
-        changeInitalState: (state,action) => {
+        setFromLocalStorage: (state, action) => {
+            state.tasks = action.payload
+            state.copyTask = action.payload
+        },
+        changeInitalState: (state, action) => {
             state.tasks = action.payload
         },
-        resetTask: (state)=>{
+        resetTask: (state) => {
             state.tasks = state.copyTask
         }
     }
 })
 
-export const { addTask, removeTask, changeStatus, changeInitalState,resetTask } = AllTasks.actions
+export const { addTask, removeTask, changeStatus, changeInitalState, resetTask, setFromLocalStorage } = AllTasks.actions
 
 export default AllTasks.reducer
