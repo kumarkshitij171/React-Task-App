@@ -1,29 +1,9 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = {
-    tasks: [
-        {
-            id: 1,
-            title: "Hello world",
-            description: "This is a description",
-            team: "Team1",
-            asignee: "User1",
-            priority: "P0",
-            status: "Progress"
-        },
-    ],
+    tasks: [],
     // copy of original state
-    copyTask: [
-        {
-            id: 1,
-            title: "Hello world",
-            description: "This is a description",
-            team: "Team1",
-            asignee: "User1",
-            priority: "P0",
-            status: "Progress"
-        },
-    ]
+    copyTask: []
 }
 
 export const AllTasks = createSlice({

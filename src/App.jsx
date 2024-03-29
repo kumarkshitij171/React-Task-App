@@ -34,7 +34,6 @@ function App() {
   }, [priorityFilter])
 
   useEffect(()=>{
-    console.log(localStorage.getItem('tasks'));
     if(localStorage.getItem('tasks')){
       const data = JSON.parse(localStorage.getItem('tasks'));
       dispatch(setFromLocalStorage(data))
